@@ -1,0 +1,4 @@
+message: Hello !!!
+
+server:
+  port: 8000
