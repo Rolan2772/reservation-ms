@@ -1,0 +1,10 @@
+logging:
+  level:
+    org.springframework.web.client: DEBUG
+
+spring:
+  cloud:
+    stream:
+      bindings:
+       input:
+        destination: reservations
