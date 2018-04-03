@@ -2,3 +2,8 @@ message: Hello !!!
 
 server:
   port: 8000
+
+spring:
+  cloud:
+    config:
+      allowOverride: true
