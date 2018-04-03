@@ -1,10 +1,11 @@
 spring:
   cloud:
     config:
+      allowOverride: true
       server:
         git:
           uri: https://github.com/Rolan2772/reservation-ms.git
-          basedir: config
+          search-paths: config
 
 server:
    port: 8888
