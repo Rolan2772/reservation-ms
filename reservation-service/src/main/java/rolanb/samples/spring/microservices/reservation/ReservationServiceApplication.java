@@ -24,11 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 import java.util.stream.Stream;
 
-@EnableBinding(Sink.class)
+//@EnableBinding(Sink.class)
 @EnableDiscoveryClient
-@IntegrationComponentScan
+//@IntegrationComponentScan
 @SpringBootApplication
 public class ReservationServiceApplication {
 
@@ -48,19 +49,19 @@ public class ReservationServiceApplication {
 
 }
 
-@MessageEndpoint
-class ReservationProcessor {
-
-    @Autowired
-    private ReservationRepository reservationRepository;
-
-    @ServiceActivator(inputChannel = Sink.INPUT)
-    public void acceptReservations(String name) {
-        reservationRepository.save(Reservation.builder()
-                .name(name)
-                .build());
-    }
-}
+//@MessageEndpoint
+//class ReservationProcessor {
+//
+//    @Autowired
+//    private ReservationRepository reservationRepository;
+//
+//    @ServiceActivator(inputChannel = Sink.INPUT)
+//    public void acceptReservations(String name) {
+//        reservationRepository.save(Reservation.builder()
+//                .name(name)
+//                .build());
+//    }
+//}
 
 @RefreshScope
 @RestController
@@ -69,9 +70,17 @@ class MessageController {
     @org.springframework.beans.factory.annotation.Value("${message}")
     private String message;
 
+    @Autowired
+    private ReservationRepository reservationRepository;
+
     @GetMapping("/message")
     public String getMessage() {
         return message;
+    }
+
+    @GetMapping("/reservations")
+    public List<Reservation> reservations() {
+        return reservationRepository.findAll();
     }
 }
 
