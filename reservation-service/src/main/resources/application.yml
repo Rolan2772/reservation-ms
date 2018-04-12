@@ -3,3 +3,9 @@
 #    stream:
 #      bindings:
 #        input: "reservations"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

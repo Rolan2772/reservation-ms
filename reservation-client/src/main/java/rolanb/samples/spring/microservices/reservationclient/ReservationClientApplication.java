@@ -2,8 +2,6 @@ package rolanb.samples.spring.microservices.reservationclient;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +14,19 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 //@EnableBinding(Source.class)
@@ -93,15 +88,15 @@ class ReservationApiGateway {
     @HystrixCommand(fallbackMethod = "fallback")
     @GetMapping("/names")
     public Collection<String> names() {
-        ParameterizedTypeReference<List<Reservation>> ptr = new ParameterizedTypeReference<List<Reservation>>() {
+        ParameterizedTypeReference<Resources<Reservation>> ptr = new ParameterizedTypeReference<Resources<Reservation>>() {
         };
 
-        ResponseEntity<List<Reservation>> responseEntity = restTemplate.exchange("http://reservation-service/reservations",
+        ResponseEntity<Resources<Reservation>> responseEntity = restTemplate.exchange("http://reservation-service/reservations",
                 HttpMethod.GET,
                 null,
                 ptr);
         return responseEntity.getBody()
-                //.getContent()
+                .getContent()
                 .stream()
                 .map(Reservation::getName)
                 .collect(Collectors.toList());
@@ -111,6 +106,5 @@ class ReservationApiGateway {
 @Data
 class Reservation {
 
-    Long id;
     String name;
 }

@@ -77,11 +77,6 @@ class MessageController {
     public String getMessage() {
         return message;
     }
-
-    @GetMapping("/reservations")
-    public List<Reservation> reservations() {
-        return reservationRepository.findAll();
-    }
 }
 
 @RepositoryRestResource
