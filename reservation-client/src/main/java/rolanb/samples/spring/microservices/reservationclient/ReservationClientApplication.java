@@ -1,5 +1,6 @@
 package rolanb.samples.spring.microservices.reservationclient;
 
+import brave.sampler.Sampler;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,11 @@ import java.util.stream.Collectors;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ReservationClientApplication {
+
+    @Bean
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
 
     @LoadBalanced
     @Bean

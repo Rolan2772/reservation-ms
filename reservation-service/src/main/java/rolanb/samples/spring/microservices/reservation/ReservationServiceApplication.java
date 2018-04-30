@@ -1,5 +1,6 @@
 package rolanb.samples.spring.microservices.reservation;
 
+import brave.sampler.Sampler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +29,12 @@ import java.util.stream.Stream;
 public class ReservationServiceApplication {
 
     @Bean
-    CommandLineRunner commandLineRunner(ReservationRepository reservationRepository) {
+    public Sampler defaultSampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
+
+    @Bean
+    public CommandLineRunner commandLineRunner(ReservationRepository reservationRepository) {
         return args -> {
             Stream.of("Jane", "Max", "Ted", "Jack")
                     .forEach(name -> reservationRepository.save(Reservation.builder()
