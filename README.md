@@ -1,5 +1,5 @@
 # reservation-ms
-Basic architecture overview of microservices with Spring Cloud stack. Contains example of configuration and communication between reservation service and reservation client service including confg server, service registry, API gateweay, monitoring and tracing.
+Basic microservices architecture overview with Spring Cloud stack. Contains example of configuration and communication between reservation service and reservation client including confg server, service registry, API gateweay, monitoring and tracing.
 
 ### Used tools and technologies
 * Spring Boot - as services engine
