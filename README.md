@@ -1,7 +1,20 @@
 # reservation-ms
-Basic microservices architecture overview with Spring Cloud stack. Contains example of configuration and communication between reservation service and reservation client including confg server, service registry, API gateweay, monitoring and tracing.
+Basic microservices architecture with Spring Cloud stack. Example of cloud infrastructure setup including confg server, service registry, API gateway, distributed monitoring and tracing, along with business services communication setup.
 
-### Used tools and technologies
+### Tech stack
+- Spring HATEOAS
+- Spring Boot
+- Spring Actuator
+- Spring Cloud Stream (not implemented yet)
+- Spring Cloud Config Server
+- Spring Cloud Netflix
+  - Service Discovery (Eureka)
+  - Circuit Breaker (Hystrix)
+  - Client Side Load Balancing (Ribbon)
+  - Intelligent Routing (Zuul)
+- Spring Cloud Sleuth
+
+### Architecture overivew
 * Spring Boot - as services engine
 * Spring Cloud Config Server - externalized configuraiton for services and tools
 * Service Registry and Discovery - Netflix Eureka-based service registry
@@ -10,6 +23,13 @@ Basic microservices architecture overview with Spring Cloud stack. Contains exam
 * Circuit Breaker - Hystrix Circuit Breaker, Hystrix dashboard
 * Distributed Tracing - using Spring Cloud Sleuth with Zipkin
 
+### Services description
+- config-server
+- eureka-server
+- hystrix-dashboard
+- reservation-service
+- reservation-client
+
 ### Build instructions
 ```
 git clone https://github.com/Rolan2772/reservation-ms.git
@@ -17,7 +37,7 @@ cd reservation-ms
 mvn clean install -DskipTests
 ```
 
-### Run instructions
+### Run instructions (UNIX)
 ```
 gnome-terminal -e 'sh -c "java -jar config-server/target/config-server-0.0.1-SNAPSHOT.jar; exec bash"'
 gnome-terminal -e 'sh -c "java -jar eureka-server/target/eureka-server-0.0.1-SNAPSHOT.jar; exec bash"'
@@ -28,18 +48,18 @@ docker run -d -p 9411:9411 openzipkin/zipkin
 gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0.0.1-SNAPSHOT.jar; exec bash"'
 ```
 ### Config Server endpoints
-* Environment endpoint - http://localhost:8888/actuator/env
-* Eureka server configuraiton - http://localhost:8888/eureka-server/default
-* Reservation servise configuration - http://localhost:8888/reservation-service/default
-* Reservation client configuration - http://localhost:8888/reservation-client/default
-* Hystrix dashboard configuration - http://localhost:8888/hystrix-dashboard/default
+* Config Server environment endpoint - http://localhost:8888/actuator/env
+* Eureka Server configuraiton - http://localhost:8888/eureka-server/default
+* Reservation Servise configuration - http://localhost:8888/reservation-service/default
+* Reservation Client configuration - http://localhost:8888/reservation-client/default
+* Hystrix Dashboard configuration - http://localhost:8888/hystrix-dashboard/default
 
-### Eureka server endpoints
-* Eureka server dashboard - http://localhost:8761/
+### Eureka Server endpoints
+* Eureka Server dashboard - http://localhost:8761/
 
 ### Hystrix Dashboard endpoints
-* Hystrix dashboard - http://localhost:8010/hystrix
-* Reservation client monitoring - http://localhost:8010/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A9999%2Factuator%2Fhystrix.stream
+* Hystrix Dashboard - http://localhost:8010/hystrix
+* Reservation Client monitoring - http://localhost:8010/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A9999%2Factuator%2Fhystrix.stream
 
 ### Zipkin endpoints
 * Zipkin server - http://localhost:9411/zipkin/
