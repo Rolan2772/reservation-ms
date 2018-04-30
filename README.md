@@ -1,21 +1,21 @@
 # reservation-ms
-Basic example of microservices architecture with Spring Cloud stack. Contains complete example of communication between reservations system microservices including confgiuration server, service discovery, API gateweay, servises monitoring and tracing.
+Basic architecture overview of microservices with Spring Cloud stack. Contains example of configuration and communication between reservation service and reservation client service including confg server, service registry, API gateweay, monitoring and tracing.
 
-### Used tools
-- Spring Boot
-- Spring Config Server
-- Spring Netflix Eureka
-- Spring Netflix Zuul
-- Spring Actuator
-- Spring Netflix Hystrix
-- Spring Netflix Hystrix Dashboard
-- Zipkin server
+### Used tools and technologies
+* Spring Boot - as services engine
+* Spring Cloud Config Server - externalized configuraiton for services and tools
+* Service Registry and Discovery - Netflix Eureka-based service registry
+* API Geteway - Netflix Zuul
+* Services monitoring - Spring actuator
+* Circuit Breaker - Hystrix Circuit Breaker, Hystrix dashboard
+* Distributed Tracing - using Spring Cloud Sleuth with Zipkin
 
 ### Build instructions
 ```
 git clone https://github.com/Rolan2772/reservation-ms.git
 cd reservation-ms
 mvn clean install -DskipTests
+```
 
 ### Run instructions
 ```
@@ -26,3 +26,4 @@ gnome-terminal -e 'sh -c "java -jar reservation-service/target/reservation-servi
 gnome-terminal -e 'sh -c "java -jar reservation-client/target/reservation-client-0.0.1NAPSHOT.jar; exec bash"'
 docker run -d -p 9411:9411 openzipkin/zipkin
 gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0.0.1-SNAPSHOT.jar; exec bash"'
+```
