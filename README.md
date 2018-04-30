@@ -39,6 +39,9 @@ gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0
 
 ### Hystrix Dashboard endpoints
 * Hystrix dashboard - http://localhost:8010/hystrix
-* Reservation client monitoring - http://localhost:8010/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A9999%2Factuator%2Fhystrix.stream - 
+* Reservation client monitoring - http://localhost:8010/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A9999%2Factuator%2Fhystrix.stream
+
+### Zipkin endpoints
+* Zipkin server - http://localhost:9411/zipkin/
 
 
