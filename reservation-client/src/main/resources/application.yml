@@ -2,9 +2,22 @@ logging:
   level:
     org.springframework.web.client: DEBUG
 
-#spring:
-#  cloud:
-#    stream:
-#      bindings:
-#       input:
-#        destination: reservations
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: reservations
+          binder: redis
+
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

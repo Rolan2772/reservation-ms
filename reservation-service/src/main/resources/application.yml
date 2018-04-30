@@ -1,8 +1,9 @@
-#spring:
-#  cloud:
-#    stream:
-#      bindings:
-#        input: "reservations"
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: reservations
 
 management:
   endpoints:

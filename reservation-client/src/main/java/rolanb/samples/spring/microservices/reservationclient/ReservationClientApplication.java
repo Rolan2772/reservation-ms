@@ -14,15 +14,17 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -73,10 +75,10 @@ class ReservationApiGateway {
     private RestTemplate restTemplate;
 //    @Autowired
 //    private Source source;
-
+//
 //    @PostMapping
-//    public void writeReservation(@RequestBody String name) {
-//        Message<String> m = MessageBuilder.withPayload(name).build();
+//    public void writeReservation(@RequestBody Reservation r) {
+//        Message<String> m = MessageBuilder.withPayload(r.getName()).build();
 //        this.source.output().send(m);
 //    }
 
