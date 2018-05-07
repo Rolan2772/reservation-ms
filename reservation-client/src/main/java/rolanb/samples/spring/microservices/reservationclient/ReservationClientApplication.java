@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-//@EnableBinding(Source.class)
+@EnableBinding(Source.class)
 @EnableCircuitBreaker
 @EnableZuulProxy
 @EnableDiscoveryClient
@@ -79,14 +79,14 @@ class ReservationApiGateway {
 
     @Autowired
     private RestTemplate restTemplate;
-//    @Autowired
-//    private Source source;
-//
-//    @PostMapping
-//    public void writeReservation(@RequestBody Reservation r) {
-//        Message<String> m = MessageBuilder.withPayload(r.getName()).build();
-//        this.source.output().send(m);
-//    }
+    @Autowired
+    private Source source;
+
+    @PostMapping
+    public void writeReservation(@RequestBody Reservation r) {
+        Message<String> m = MessageBuilder.withPayload(r.getName()).build();
+        this.source.output().send(m);
+    }
 
     public Collection<String> fallback(Throwable e) {
         log.error("Reached reservations fall back method", e);

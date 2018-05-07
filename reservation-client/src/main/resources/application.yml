@@ -8,13 +8,17 @@ spring:
       bindings:
         output:
           destination: reservations
-          binder: redis
-
-spring:
-  redis:
-    host: 127.0.0.1
-    port: 6379
-
+          binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
 
 management:
   endpoints:
