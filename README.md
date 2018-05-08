@@ -1,5 +1,5 @@
 # reservation-ms
-Microservices architecture example on top of Spring Cloud stack. The idea behind is to concentrate on infrastructure rather than business logic. Simple reservation system used as a use case for the services communication, load balancing, logging, distributed tracing and monitoring.
+Project shows microservices architecture with the Spring Cloud stack. The idea behind is to concentrate on microservices infrastructure rather then business logic. Simple reservation system used as a use case for the surrounding system.
 
 ### Tech stack
 - Spring HATEOAS
