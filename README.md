@@ -5,7 +5,7 @@ Basic microservices architecture with Spring Cloud stack. Example of cloud infra
 - Spring HATEOAS
 - Spring Boot
 - Spring Actuator
-- Spring Cloud Stream (not implemented yet)
+- Spring Cloud Stream (RabbitMQ as brocker)
 - Spring Cloud Config Server
 - Spring Cloud Netflix
   - Service Discovery (Eureka)
@@ -63,5 +63,8 @@ gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0
 
 ### Zipkin endpoints
 * Zipkin server - http://localhost:9411/zipkin/
+
+### Rabbit endpoints
+* Rabbit admin UI - http://localhost:15672/
 
 
