@@ -19,6 +19,9 @@ spring:
                 port: 5672
                 username: guest
                 password: guest
+  zipkin:
+    sender:
+      type: web
 
 management:
   endpoints:
