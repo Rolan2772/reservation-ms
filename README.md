@@ -1,5 +1,5 @@
 # reservation-ms
-Basic microservices architecture with Spring Cloud stack. Example of cloud infrastructure setup including confg server, service registry, API gateway, distributed monitoring and tracing, along with business services communication setup.
+Basic microservices architecture example with Spring Cloud stack including confg server, service registry, API gateway, monitoring, logging and distributed tracing along with services communication. The idea behind is to concentrate on  infrastructure rather than business logic.
 
 ### Tech stack
 - Spring HATEOAS
