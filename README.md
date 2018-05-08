@@ -5,7 +5,7 @@ Basic microservices architecture with Spring Cloud stack. Example of cloud infra
 - Spring HATEOAS
 - Spring Boot
 - Spring Actuator
-- Spring Cloud Stream (RabbitMQ as brocker)
+- Spring Cloud Stream (RabbitMQ as broker)
 - Spring Cloud Config Server
 - Spring Cloud Netflix
   - Service Discovery (Eureka)
