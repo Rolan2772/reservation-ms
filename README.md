@@ -65,6 +65,6 @@ gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0
 * Zipkin server - http://localhost:9411/zipkin/
 
 ### Rabbit endpoints
-* Rabbit admin UI - http://localhost:15672/
+* RabbitMQ management interface - http://localhost:15672/
 
 
