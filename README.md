@@ -13,6 +13,8 @@ Project demonstrates microservices architecture with the Spring Cloud stack. The
   - Client Side Load Balancing (Ribbon)
   - Intelligent Routing (Zuul)
 - Spring Cloud Sleuth
+- Zipkin 
+- ELK stack
 
 ### Architecture overivew
 * Spring Boot - as services engine
@@ -22,6 +24,7 @@ Project demonstrates microservices architecture with the Spring Cloud stack. The
 * Services monitoring - Spring actuator
 * Circuit Breaker - Hystrix Circuit Breaker, Hystrix dashboard
 * Distributed Tracing - using Spring Cloud Sleuth with Zipkin
+* Logging - Elasticsearch, Logstash, Kibana
 
 ### Services description
 - config-server
@@ -46,6 +49,9 @@ gnome-terminal -e 'sh -c "java -jar reservation-service/target/reservation-servi
 gnome-terminal -e 'sh -c "java -jar reservation-client/target/reservation-client-0.0.1NAPSHOT.jar; exec bash"'
 docker run -d -p 9411:9411 openzipkin/zipkin
 gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0.0.1-SNAPSHOT.jar; exec bash"'
+docker run -d -it --name es -p 9200:9200 -p 9300:9300 elasticsearch
+docker run -d -it --name kibana --link es:elasticsearch -p 5601:5601 kibana
+docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port => 5000 codec => "json" } } filter { grok { match => { "message" => "%{TIMESTAMP_ISO8601:timestamp}\s+%{LOGLEVEL:severity}\s+\[%{DATA:service},%{DATA:trace},%{DATA:span},%{DATA:exportable}\]\s+%{DATA:pid}\s+---\s+\[%{DATA:thread}\]\s+%{DATA:class}\s+:\s+%{GREEDYDATA:rest}" } } } output { elasticsearch { hosts => ["10.7.10.98"] index => "reservation-ms-%{serviceName}"} stdout {} }'
 ```
 ### Config Server endpoints
 * Config Server environment endpoint - http://localhost:8888/actuator/env
@@ -67,4 +73,9 @@ gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0
 ### Rabbit endpoints
 * RabbitMQ management interface - http://localhost:15672/
 
+### Kibana endpoints
+* Kibana - http://localhost:5601
+
+### Elastic search endpoints
+* Elasticsearch - http://localhost:9200
 
