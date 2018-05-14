@@ -74,8 +74,9 @@ docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port =
 * RabbitMQ management interface - http://localhost:15672/
 
 ### Kibana endpoints
-* Kibana - http://localhost:5601
+* Kibana dashboard - http://localhost:5601
 
 ### Elastic search endpoints
-* Elasticsearch health - http://localhost:9200/_cluster/health
+* Elasticsearch health check - http://localhost:9200/_cluster/health
+* Elasticsearch delete all - DELETE http://localhost:9200/_all
 
