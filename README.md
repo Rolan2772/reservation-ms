@@ -77,5 +77,5 @@ docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port =
 * Kibana - http://localhost:5601
 
 ### Elastic search endpoints
-* Elasticsearch - http://localhost:9200
+* Elasticsearch health - http://localhost:9200/_cluster/health
 
