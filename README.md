@@ -51,8 +51,9 @@ docker run -d -p 9411:9411 openzipkin/zipkin
 gnome-terminal -e 'sh -c "java -jar hystrix-dashboard/target/hystrix-dashboard-0.0.1-SNAPSHOT.jar; exec bash"'
 docker run -d -it --name es -p 9200:9200 -p 9300:9300 elasticsearch
 docker run -d -it --name kibana --link es:elasticsearch -p 5601:5601 kibana
-docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port => 5000 codec => "json" } } filter { grok { match => { "message" => "%{TIMESTAMP_ISO8601:timestamp}\s+%{LOGLEVEL:severity}\s+\[%{DATA:service},%{DATA:trace},%{DATA:span},%{DATA:exportable}\]\s+%{DATA:pid}\s+---\s+\[%{DATA:thread}\]\s+%{DATA:class}\s+:\s+%{GREEDYDATA:rest}" } } } output { elasticsearch { hosts => ["10.7.10.98"] index => "reservation-ms-%{serviceName}"} stdout {} }'
+docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port => 5000 codec => "json" } } filter { grok { match => { "message" => "%{TIMESTAMP_ISO8601:timestamp}\s+%{LOGLEVEL:severity}\s+\[%{DATA:service},%{DATA:trace},%{DATA:span},%{DATA:exportable}\]\s+%{DATA:pid}\s+---\s+\[%{DATA:thread}\]\s+%{DATA:class}\s+:\s+%{GREEDYDATA:rest}" } } }  output { elasticsearch { hosts => ["10.7.10.98"] index => "ms-%{service}"} stdout {} }'
 ```
+
 ### Config Server endpoints
 * Config Server environment endpoint - http://localhost:8888/actuator/env
 * Eureka Server configuraiton - http://localhost:8888/eureka-server/default
