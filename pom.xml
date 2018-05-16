@@ -31,6 +31,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.M8</spring-cloud.version>
+        <logstash.encoder.version>5.1</logstash.encoder.version>
     </properties>
 
     <build>
