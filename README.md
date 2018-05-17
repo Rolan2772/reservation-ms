@@ -15,13 +15,14 @@ Project demonstrates microservices architecture with the Spring Cloud stack. The
 - Spring Cloud Sleuth
 - Zipkin 
 - ELK stack
+- Spring Boot Admin server
 
 ### Architecture overivew
 * Spring Boot - as services engine
 * Spring Cloud Config Server - externalized configuraiton for services and tools
 * Service Registry and Discovery - Netflix Eureka-based service registry
 * API Geteway - Netflix Zuul
-* Services monitoring - Spring actuator
+* Services monitoring - String actuator endpoints, admin server
 * Circuit Breaker - Hystrix Circuit Breaker, Hystrix dashboard
 * Distributed Tracing - using Spring Cloud Sleuth with Zipkin
 * Logging - Elasticsearch, Logstash, Kibana
@@ -81,3 +82,5 @@ docker run -d -it --name logstash -p 5000:5000 logstash -e 'input { tcp { port =
 * Elasticsearch health check - http://localhost:9200/_cluster/health
 * Elasticsearch delete all - DELETE http://localhost:9200/_all
 
+### Admin server endpoints
+* Registered applications - http://localhost:8800/#/applications

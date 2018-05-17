@@ -24,6 +24,7 @@
         <module>reservation-service</module>
         <module>reservation-client</module>
         <module>hystrix-dashboard</module>
+        <module>admin-server</module>
     </modules>
 
     <properties>
@@ -32,6 +33,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.M8</spring-cloud.version>
         <logstash.encoder.version>5.1</logstash.encoder.version>
+        <admin.server.version>2.0.0-SNAPSHOT</admin.server.version>
     </properties>
 
     <build>
@@ -63,6 +65,18 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
     </repositories>
 
